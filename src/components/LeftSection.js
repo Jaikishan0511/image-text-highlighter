@@ -12,6 +12,7 @@ const LeftSection = ({setSelectedField, jsonData }) => {
       <ListItem
         key={child.id}
         onClick={() => handleFieldClick(child.content?.value)}
+        style={{cursor:"pointer"}}
       >
         <ListItemText primary={child.label} secondary={child.content?.value || 'N/A'} />
       </ListItem>

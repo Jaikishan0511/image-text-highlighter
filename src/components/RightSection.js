@@ -3,16 +3,19 @@ import BoxOverlay from "../common/BoxOverlay";
 import Tesseract from "tesseract.js";
 import stringSimilarity from "string-similarity";
 import doc from "../assets/doc.jpg";
+import CustomLoader from '../common/CustomLoader';
 
 const RightScreen = ({ selectedField }) => {
   const imageRef = useRef(null);
   const [fieldPositions, setFieldPositions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const recognizeText = async () => {
+      setIsLoading(true);
       try {
         const result = await Tesseract.recognize(imageRef.current, "eng", {
-          logger: (info) => console.log(info),
+          logger: (info) => console.log("recogniation running"),
         });
 
         const lowerCaseSelectedField = selectedField.map((keyword) =>
@@ -98,7 +101,9 @@ const RightScreen = ({ selectedField }) => {
             y1: y1 * scaleHeight,
           };
         }
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.error("Error recognizing text:", error);
       }
     };
@@ -116,6 +121,7 @@ const RightScreen = ({ selectedField }) => {
         alt="Document"
         style={{ height: "auto", width: "100%" }}
       />
+      {isLoading && <CustomLoader />}
       {fieldPositions.map((position, index) => (
         <BoxOverlay key={index} position={position} />
       ))}
