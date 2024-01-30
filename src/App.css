@@ -4,6 +4,12 @@
   padding: 10px;
   background-color: #f1f1f1;
 }
+.list-item:hover {
+  background-color: #f0f0f0; /* Add a subtle background color on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow on hover */
+  transform: scale(1.05); /* Increase the size on hover for a pop-out effect */
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Add transitions for a smooth effect */
+}
 
 .right-screen {
   position: relative;

@@ -2,13 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import BoxOverlay from "../common/BoxOverlay";
 import Tesseract from "tesseract.js";
 import stringSimilarity from "string-similarity";
-import doc from "../assets/doc.jpg";
 import CustomLoader from '../common/CustomLoader';
+import CustomMemoizedImage from "../common/CustomMemoizedImage";
 
-const RightScreen = ({ selectedField }) => {
+const RightScreen = ({ selectedField ,isLoading, setIsLoading}) => {
   const imageRef = useRef(null);
   const [fieldPositions, setFieldPositions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const recognizeText = async () => {
@@ -115,12 +114,7 @@ const RightScreen = ({ selectedField }) => {
 
   return (
     <div className="right-screen" style={{ position: "relative" }}>
-      <img
-        ref={imageRef}
-        src={doc}
-        alt="Document"
-        style={{ height: "auto", width: "100%" }}
-      />
+      <CustomMemoizedImage imageRef={imageRef}/>
       {isLoading && <CustomLoader />}
       {fieldPositions.map((position, index) => (
         <BoxOverlay key={index} position={position} />
