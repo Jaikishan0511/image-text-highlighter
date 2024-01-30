@@ -19,7 +19,6 @@ const LeftSection = ({
 
   const handleFieldHover = (field) => {
     if (isHoverEnabled && !isLoading) {
-      debugger;
       setSelectedField(field ? field.toString().split(" ") : "");
     }
   };
@@ -31,14 +30,8 @@ const LeftSection = ({
           key={child.id}
           className={`list-item ${
             isLoading &&
-            selectedField.length > 1 &&
-            selectedField?.join(" ") === child.content?.value
-              ? "selected"
-              : ""
-          } ${
-            isLoading &&
-            selectedField.length > 1 &&
-            selectedField?.join(" ") !== child.content?.value?.toString()
+            (selectedField?.length > 1 ?
+            selectedField?.join(" ") : selectedField?.length && selectedField[0]) !== (child.content?.value?.toString() || "")
               ? "loading"
               : ""
           }`}

@@ -1,4 +1,3 @@
-// CustomLoader.js
 import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/system';
@@ -8,7 +7,7 @@ const LoaderContainer = styled('div')({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  color: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white color
+  color: 'rgba(255, 255, 255, 0.8)', 
 });
 
 const CustomLoader = () => {
