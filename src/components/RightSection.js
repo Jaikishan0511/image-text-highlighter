@@ -110,6 +110,7 @@ const RightScreen = ({ selectedField ,isLoading, setIsLoading}) => {
     if (selectedField?.length > 0) {
       recognizeText();
     }
+    // eslint-disable-next-line
   }, [selectedField]);
 
   return (
